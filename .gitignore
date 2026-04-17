@@ -1,0 +1,42 @@
+# =========================
+# Environment Variables
+# =========================
+.env
+
+# =========================
+# Python & Flask
+# =========================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+env/
+.venv/
+
+# Flask instance folder (holds local data/configs)
+instance/
+
+# =========================
+# Database / Docker Volumes
+# =========================
+# Ignore local database data mapped from Docker containers
+db_data/
+*.sqlite3
+
+# =========================
+# IDEs & OS Files
+# =========================
+# VS Code
+.vscode/
+
+# JetBrains (PyCharm, IntelliJ)
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
