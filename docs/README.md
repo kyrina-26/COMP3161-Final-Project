@@ -1,7 +1,7 @@
 
 # COMP3161 Final Project
 
-This project consists of the backend compoenets of a course management system. It contains both ad database and API that is accessible through a frontend service
+This project consists of the backend components of a course management system. It contains both a database and API that is accessible through a frontend service
 
 
 
