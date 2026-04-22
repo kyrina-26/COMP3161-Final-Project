@@ -1,0 +1,29 @@
+# =========================
+# Environment Variables
+# =========================
+.env
+
+# =========================
+# Python & Flask
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.venv/
+instance/
+
+# =========================
+# Database / Docker Volumes
+# =========================
+db_data/
+*.sqlite3
+
+# =========================
+# IDEs & OS Files
+# =========================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

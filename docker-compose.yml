@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  api:
+   #Note: you will need to rebuild the container to see code changes.
+    build: ./api
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    ports:
+      # Restricts DB access strictly to your local machine
+      - "127.0.0.1:3307:3306" 
+    env_file:
+      - .env
+    volumes:
+      - db_data:/var/lib/mysql
+      # Auto-runs initialization scripts
+      - ./database:/docker-entrypoint-initdb.d 
+
+volumes:
+  db_data: # Persists MySQL data across container restarts
