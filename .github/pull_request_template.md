@@ -1,5 +1,5 @@
 ## 📝 Description
-Syncing latest typo fixes and minor documentation updates from the `main` branch to maintain codebase health.
+Place a description of your changes here
 
 ## 🛠️ Type of Change
 - [ ] ✨ New Feature
