@@ -1,27 +1,34 @@
 version: '3.8'
 
 services:
-  api:
-   #Note: you will need to rebuild the container to see code changes.
+  api: # Note: any changes require a rebuild and restart
     build: ./api
     ports:
       - "5000:5000"
     env_file:
       - .env
     depends_on:
-      - db
+      db:
+        condition: service_healthy  # Tells API to wait until DB is actually ready
 
   db:
     image: mysql:8.0
+    container_name: course_db
+    restart: always
     ports:
-      # Restricts DB access strictly to your local machine
-      - "127.0.0.1:3307:3306" 
+      - "127.0.0.1:3307:3306" # Restricts access to local machine
     env_file:
       - .env
+    environment:
+      - MYSQL_DATABASE=course_management 
     volumes:
-      - db_data:/var/lib/mysql
-      # Auto-runs initialization scripts
-      - ./database:/docker-entrypoint-initdb.d 
+      - db_data:/var/lib/mysql # Persists data across container restarts
+      - ./database:/docker-entrypoint-initdb.d # Initialize db with SQL files
+    healthcheck: # Makes sure API wait until the databse is up and running 
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$${DB_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
 volumes:
-  db_data: # Persists MySQL data across container restarts
+  db_data:
