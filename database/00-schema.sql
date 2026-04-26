@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS discussion_threads (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE thread_replies (
+CREATE TABLE IF NOT EXISTS thread_replies (
     id INT AUTO_INCREMENT PRIMARY KEY,
     discussion_id INT NOT NULL,
     thread_id INT NOT NULL,
