@@ -1,41 +1,39 @@
-DROP DATABASE IF EXISTS course_management;
-
 CREATE DATABASE course_management;
 
 USE course_management;
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users(
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
 );
 
-CREATE TABLE students (
+CREATE TABLE IF NOT EXISTS students (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE administrators (
+CREATE TABLE IF NOT EXISTS administrators (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE lecturers (
+CREATE TABLE IF NOT EXISTS lecturers (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE courses (
+CREATE TABLE IF NOT EXISTS courses (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     course_code VARCHAR(50) NOT NULL UNIQUE,
     FOREIGN KEY (lecturer_id) REFERENCES lecturers(id)
 );
 
-CREATE TABLE teaches(
+CREATE TABLE IF NOT EXISTS teaches(
     id INT AUTO_INCREMENT PRIMARY KEY,
     lecturer_id INT NOT NULL,
     course_id INT NOT NULL,
@@ -43,7 +41,7 @@ CREATE TABLE teaches(
     FOREIGN KEY (course_id) REFERENCES courses(id)
 );
 
-CREATE TABLE enrollments (
+CREATE TABLE IF NOT EXISTS enrollments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     student_id INT NOT NULL,
     course_id INT NOT NULL,
@@ -51,7 +49,7 @@ CREATE TABLE enrollments (
     FOREIGN KEY (course_id) REFERENCES courses(id)
 );
 
-CREATE TABLE assignments (
+CREATE TABLE IF NOT EXISTS assignments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     enroll_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
@@ -60,7 +58,7 @@ CREATE TABLE assignments (
     FOREIGN KEY (enroll_id) REFERENCES enrollments(id)
 );
 
-CREATE TABLE calendar_events (
+CREATE TABLE IF NOT EXISTS calendar_events (
     id INT AUTO_INCREMENT PRIMARY KEY,
     course_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
@@ -69,7 +67,7 @@ CREATE TABLE calendar_events (
     FOREIGN KEY (course_id) REFERENCES courses(id)
 );
 
-CREATE TABLE course_content (
+CREATE TABLE IF NOT EXISTS course_content (
     id INT AUTO_INCREMENT PRIMARY KEY,
     course_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
@@ -77,7 +75,7 @@ CREATE TABLE course_content (
     FOREIGN KEY (course_id) REFERENCES courses(id)
 );
 
-CREATE TABLE discussions (
+CREATE TABLE IF NOT EXISTS discussions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     course_id INT NOT NULL,
     user_id INT NOT NULL,
@@ -87,7 +85,7 @@ CREATE TABLE discussions (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE discussion_threads (
+CREATE TABLE IF NOT EXISTS discussion_threads (
     id INT AUTO_INCREMENT PRIMARY KEY,
     discussion_id INT NOT NULL,
     user_id INT NOT NULL,
