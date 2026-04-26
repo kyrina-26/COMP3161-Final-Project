@@ -35,8 +35,7 @@ CREATE TABLE IF NOT EXISTS lecturers (
 CREATE TABLE IF NOT EXISTS courses (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    course_code VARCHAR(50) NOT NULL UNIQUE,
-    FOREIGN KEY (lecturer_id) REFERENCES lecturers(id)
+    course_code VARCHAR(50) NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS teaches(
