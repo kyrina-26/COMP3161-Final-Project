@@ -1,6 +1,8 @@
 services:
   api: # Note: any changes require a rebuild and restart
     build: ./api
+    networks:
+      - app_network
     container_name: api
     ports:
       - "5000:5000"
@@ -12,6 +14,8 @@ services:
 
   db:
     image: mysql:8.0
+    networks:
+      - app_network
     container_name: db
     restart: always
     command: # Custom MySQL configuration for better performance with large datasets
@@ -36,3 +40,8 @@ services:
 
 volumes:
   db_data:
+
+networks:
+  app_network:
+    name: campus_backend_link
+    driver: bridge
