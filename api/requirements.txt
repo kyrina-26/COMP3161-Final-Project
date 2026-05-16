@@ -3,3 +3,4 @@ mysql-connector-python==8.2.0
 python-dotenv==1.0.0
 PyJWT==2.8.0
 gunicorn==21.2.0
+faker==18.3.0
